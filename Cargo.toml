@@ -24,6 +24,7 @@ num-traits = "0.2"
 
 [features]
 full-syntax = ["syn/full"]
+scoped-import = []
 
 [lib]
 name = "num_derive"
