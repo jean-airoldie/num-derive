@@ -77,7 +77,11 @@ fn dummy_const_trick<T: quote::ToTokens>(
         const #dummy_const: () = {
             #[allow(clippy::useless_attribute)]
             #[allow(rust_2018_idioms)]
+            // Fix for https://github.com/rust-num/num-derive/issues/34.
+            #[cfg(not(feature = "scoped-import"))]
             extern crate num_traits as _num_traits;
+            #[cfg(feature = "scoped-import")]
+            use num_traits as _num_traits;
             #exp
         };
     }
